@@ -41,6 +41,11 @@ const Testimonials = () => {
 
   return (
     <div>
+      <SEO
+        title="Testimonials | What Clients Say About O-Vation"
+        description="Hear from clients of O-Vation about curated experiences, flawless events, and transformative business partnerships."
+        path="/testimonials"
+      />
       <section className="bg-primary pt-32 pb-20 px-8">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal>
