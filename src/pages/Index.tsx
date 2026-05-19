@@ -67,6 +67,11 @@ const Index = () => {
 
   return (
     <div className="overflow-x-hidden">
+      <SEO
+        title="O-Vation — Luxury Concierge & Curated Experiences"
+        description="Boutique Montreal firm specializing in luxury concierge, business development, curated experiences, and high-end events."
+        path="/"
+      />
       {/* HERO — Full-screen dark */}
       <section className="relative h-screen flex flex-col items-center justify-center bg-primary overflow-hidden">
         <motion.div
