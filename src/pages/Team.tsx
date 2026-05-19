@@ -32,6 +32,11 @@ const team = [
 const Team = () => {
   return (
     <div>
+      <SEO
+        title="Team | The People Behind O-Vation"
+        description="Meet Audrey and the team behind O-Vation — luxury concierge specialists, event directors, and business development experts."
+        path="/team"
+      />
       <section className="bg-primary pt-32 pb-20 px-8">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal>
@@ -46,6 +51,7 @@ const Team = () => {
 
       <section className="bg-background py-28 px-8">
         <div className="max-w-7xl mx-auto">
+          <h2 className="sr-only">Meet the Team</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
             {team.map((member, i) => (
               <ScrollReveal key={member.name} delay={i * 0.1}>
