@@ -1,11 +1,17 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import ScrollReveal from "@/components/ScrollReveal";
+import SEO from "@/components/SEO";
 import Footer from "@/components/Footer";
 
 const About = () => {
   return (
     <div>
+      <SEO
+        title="About O-Vation | Boutique Luxury Firm in Montreal"
+        description="Founded by Audrey, O-Vation is a Montreal boutique firm built on relationships, precision, and curated luxury experiences."
+        path="/about"
+      />
       {/* Hero */}
       <section className="bg-primary pt-32 pb-20 px-8">
         <div className="max-w-7xl mx-auto">
