@@ -23,6 +23,11 @@ const Experiences = () => {
 
   return (
     <div>
+      <SEO
+        title="Experiences & Portfolio | O-Vation"
+        description="A curated portfolio of luxury travel, events, business retreats, and bespoke experiences delivered by O-Vation."
+        path="/experiences"
+      />
       <section className="bg-primary pt-32 pb-20 px-8">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal>
@@ -37,6 +42,7 @@ const Experiences = () => {
 
       <section className="bg-background py-20 px-8">
         <div className="max-w-7xl mx-auto">
+          <h2 className="sr-only">Our Portfolio</h2>
           {/* Filters */}
           <ScrollReveal>
             <div className="flex flex-wrap gap-3 mb-16">
