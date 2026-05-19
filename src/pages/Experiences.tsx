@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ScrollReveal from "@/components/ScrollReveal";
+import SEO from "@/components/SEO";
 import Footer from "@/components/Footer";
 
 const categories = ["All", "Travel", "Events", "Business", "Experiences"];
