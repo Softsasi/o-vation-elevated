@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Send, MapPin, Mail, Phone } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
+import SEO from "@/components/SEO";
 import Footer from "@/components/Footer";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -21,6 +22,11 @@ const Contact = () => {
 
   return (
     <div>
+      <SEO
+        title="Contact O-Vation | Request a Consultation"
+        description="Get in touch with O-Vation to discuss luxury concierge, curated experiences, business development, or high-end events."
+        path="/contact"
+      />
       <section className="bg-primary pt-32 pb-20 px-8">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal>
@@ -44,8 +50,9 @@ const Contact = () => {
               </p>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label className="text-label text-muted-foreground mb-2 block">Full Name</label>
+                  <label htmlFor="contact-name" className="text-label text-muted-foreground mb-2 block">Full Name</label>
                   <Input
+                    id="contact-name"
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                     required
@@ -54,8 +61,9 @@ const Contact = () => {
                   />
                 </div>
                 <div>
-                  <label className="text-label text-muted-foreground mb-2 block">Email</label>
+                  <label htmlFor="contact-email" className="text-label text-muted-foreground mb-2 block">Email</label>
                   <Input
+                    id="contact-email"
                     type="email"
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
@@ -65,8 +73,9 @@ const Contact = () => {
                   />
                 </div>
                 <div>
-                  <label className="text-label text-muted-foreground mb-2 block">Phone (optional)</label>
+                  <label htmlFor="contact-phone" className="text-label text-muted-foreground mb-2 block">Phone (optional)</label>
                   <Input
+                    id="contact-phone"
                     type="tel"
                     value={form.phone}
                     onChange={(e) => setForm({ ...form, phone: e.target.value })}
@@ -75,8 +84,9 @@ const Contact = () => {
                   />
                 </div>
                 <div>
-                  <label className="text-label text-muted-foreground mb-2 block">Your Vision</label>
+                  <label htmlFor="contact-message" className="text-label text-muted-foreground mb-2 block">Your Vision</label>
                   <Textarea
+                    id="contact-message"
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
                     required

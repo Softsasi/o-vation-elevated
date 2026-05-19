@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import ScrollReveal from "@/components/ScrollReveal";
+import SEO from "@/components/SEO";
 import Footer from "@/components/Footer";
 
 const testimonials = [
@@ -40,6 +41,11 @@ const Testimonials = () => {
 
   return (
     <div>
+      <SEO
+        title="Testimonials | What Clients Say About O-Vation"
+        description="Hear from clients of O-Vation about curated experiences, flawless events, and transformative business partnerships."
+        path="/testimonials"
+      />
       <section className="bg-primary pt-32 pb-20 px-8">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal>

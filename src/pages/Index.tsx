@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowDown, ArrowRight, Quote } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
+import SEO from "@/components/SEO";
 import Footer from "@/components/Footer";
 
 const services = [
@@ -66,6 +67,11 @@ const Index = () => {
 
   return (
     <div className="overflow-x-hidden">
+      <SEO
+        title="O-Vation — Luxury Concierge & Curated Experiences"
+        description="Boutique Montreal firm specializing in luxury concierge, business development, curated experiences, and high-end events."
+        path="/"
+      />
       {/* HERO — Full-screen dark */}
       <section className="relative h-screen flex flex-col items-center justify-center bg-primary overflow-hidden">
         <motion.div
@@ -76,6 +82,7 @@ const Index = () => {
         >
           <h1 className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-primary-foreground mb-6 leading-[0.9]">
             <span className="gold-shimmer">O-Vation</span>
+            <span className="sr-only"> — Luxury Concierge & Business Development</span>
           </h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -169,7 +176,7 @@ const Index = () => {
                     to="/services"
                     className="inline-flex items-center gap-2 mt-6 text-label text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   >
-                    Learn More <ArrowRight size={12} />
+                    Explore Our Services <ArrowRight size={12} />
                   </Link>
                 </div>
               </ScrollReveal>

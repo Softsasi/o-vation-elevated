@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import ScrollReveal from "@/components/ScrollReveal";
+import SEO from "@/components/SEO";
 import Footer from "@/components/Footer";
 
 const pillars = [
@@ -33,6 +34,11 @@ const pillars = [
 const Services = () => {
   return (
     <div>
+      <SEO
+        title="Services | Concierge, Events & Business Development | O-Vation"
+        description="Four service pillars: luxury concierge, business development, curated experiences, and high-end events — delivered with precision."
+        path="/services"
+      />
       <section className="bg-primary pt-32 pb-20 px-8">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal>
