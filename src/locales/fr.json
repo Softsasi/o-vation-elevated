@@ -1,0 +1,90 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "services": "Services",
+    "experiences": "Expériences",
+    "team": "Équipe",
+    "testimonials": "Témoignages",
+    "contact": "Contact",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "language": "Langue"
+  },
+  "home": {
+    "tagline": "Là où la vision rencontre l'expérience",
+    "intro": "Un cabinet boutique créant des services de conciergerie de luxe, du développement d'affaires, des expériences sur mesure et des événements haut de gamme pour ceux qui exigent davantage.",
+    "discover": "Découvrir nos services",
+    "servicesEyebrow": "Ce que nous faisons",
+    "servicesTitle": "Quatre piliers, une promesse : rien n'est laissé au hasard.",
+    "experiencesEyebrow": "Réalisations récentes",
+    "experiencesTitle": "Un aperçu de ce que nous avons créé.",
+    "ctaTitle": "Créons ensemble quelque chose d'extraordinaire",
+    "ctaSubtitle": "Parlez-nous de votre vision.",
+    "ctaButton": "Commencer la conversation"
+  },
+  "footer": {
+    "tagline": "Là où la vision rencontre l'expérience. Un cabinet boutique spécialisé en conciergerie de luxe, développement d'affaires et expériences sur mesure.",
+    "navigation": "Navigation",
+    "getInTouch": "Nous contacter",
+    "newsletter": "Inscrivez-vous à notre lettre privée",
+    "emailPlaceholder": "Votre courriel",
+    "subscribe": "S'inscrire",
+    "rights": "Tous droits réservés.",
+    "privacy": "Confidentialité",
+    "terms": "Conditions d'utilisation"
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Commençons la conversation",
+    "formTitle": "Demander une consultation",
+    "formSubtitle": "Parlez-nous de votre vision. Nous répondons sous 24 heures.",
+    "name": "Nom complet",
+    "email": "Courriel",
+    "phone": "Téléphone (optionnel)",
+    "message": "Votre vision",
+    "send": "Envoyer",
+    "sending": "Envoi en cours...",
+    "success": "Message reçu",
+    "successDesc": "Merci pour votre message. Nous reviendrons vers vous sous 24 heures.",
+    "error": "Une erreur s'est produite",
+    "errorDesc": "Veuillez réessayer ou nous écrire directement."
+  },
+  "newsletter": {
+    "success": "Bienvenue.",
+    "successDesc": "Vous faites maintenant partie du cercle O-Vation.",
+    "error": "Inscription impossible",
+    "errorDesc": "Veuillez vérifier votre courriel et réessayer."
+  },
+  "admin": {
+    "dashboard": "Tableau de bord",
+    "services": "Services",
+    "experiences": "Expériences",
+    "team": "Équipe",
+    "testimonials": "Témoignages",
+    "inbox": "Boîte de réception",
+    "newsletter": "Infolettre",
+    "media": "Médias",
+    "settings": "Paramètres",
+    "signOut": "Déconnexion"
+  },
+  "auth": {
+    "signIn": "Se connecter",
+    "signUp": "Créer un compte",
+    "signInTitle": "Bon retour",
+    "signUpTitle": "Créer votre compte",
+    "email": "Courriel",
+    "password": "Mot de passe",
+    "fullName": "Nom complet",
+    "or": "ou",
+    "google": "Continuer avec Google",
+    "noAccount": "Pas de compte ?",
+    "haveAccount": "Vous avez déjà un compte ?",
+    "forgot": "Mot de passe oublié ?",
+    "reset": "Réinitialiser",
+    "resetSent": "Vérifiez vos courriels.",
+    "newPassword": "Nouveau mot de passe",
+    "updatePassword": "Mettre à jour",
+    "passwordUpdated": "Mot de passe mis à jour."
+  }
+}

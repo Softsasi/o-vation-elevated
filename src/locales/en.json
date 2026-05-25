@@ -1,0 +1,90 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "experiences": "Experiences",
+    "team": "Team",
+    "testimonials": "Testimonials",
+    "contact": "Contact",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "language": "Language"
+  },
+  "home": {
+    "tagline": "Where Vision Meets Experience",
+    "intro": "A boutique firm crafting luxury concierge, business development, curated experiences, and high-end events for those who expect more.",
+    "discover": "Explore Our Services",
+    "servicesEyebrow": "What We Do",
+    "servicesTitle": "Four pillars, one promise: nothing left to chance.",
+    "experiencesEyebrow": "Recent Work",
+    "experiencesTitle": "A glimpse of what we've created.",
+    "ctaTitle": "Let's Create Something Extraordinary",
+    "ctaSubtitle": "Tell us about your vision.",
+    "ctaButton": "Start the Conversation"
+  },
+  "footer": {
+    "tagline": "Where vision meets experience. A boutique firm specializing in luxury concierge, business development, and curated experiences.",
+    "navigation": "Navigation",
+    "getInTouch": "Get in Touch",
+    "newsletter": "Subscribe to our private dispatch",
+    "emailPlaceholder": "Your email",
+    "subscribe": "Subscribe",
+    "rights": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Let's Start a Conversation",
+    "formTitle": "Request a Consultation",
+    "formSubtitle": "Tell us about your vision. We'll respond within 24 hours.",
+    "name": "Full Name",
+    "email": "Email",
+    "phone": "Phone (optional)",
+    "message": "Your Vision",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "success": "Message received",
+    "successDesc": "Thank you for reaching out. We'll be in touch within 24 hours.",
+    "error": "Something went wrong",
+    "errorDesc": "Please try again or email us directly."
+  },
+  "newsletter": {
+    "success": "You're in.",
+    "successDesc": "Welcome to the O-Vation circle.",
+    "error": "Could not subscribe",
+    "errorDesc": "Please check your email and try again."
+  },
+  "admin": {
+    "dashboard": "Dashboard",
+    "services": "Services",
+    "experiences": "Experiences",
+    "team": "Team",
+    "testimonials": "Testimonials",
+    "inbox": "Inbox",
+    "newsletter": "Newsletter",
+    "media": "Media",
+    "settings": "Settings",
+    "signOut": "Sign out"
+  },
+  "auth": {
+    "signIn": "Sign in",
+    "signUp": "Create account",
+    "signInTitle": "Welcome back",
+    "signUpTitle": "Create your account",
+    "email": "Email",
+    "password": "Password",
+    "fullName": "Full name",
+    "or": "or",
+    "google": "Continue with Google",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "forgot": "Forgot password?",
+    "reset": "Reset password",
+    "resetSent": "Check your email for a reset link.",
+    "newPassword": "New password",
+    "updatePassword": "Update password",
+    "passwordUpdated": "Password updated."
+  }
+}
