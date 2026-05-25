@@ -109,9 +109,10 @@ const Contact = () => {
                 </div>
                 <button
                   type="submit"
-                  className="inline-flex items-center gap-3 bg-accent text-accent-foreground px-8 py-4 text-label hover:bg-accent/90 transition-colors w-full justify-center"
+                  disabled={busy}
+                  className="inline-flex items-center gap-3 bg-accent text-accent-foreground px-8 py-4 text-label hover:bg-accent/90 transition-colors w-full justify-center disabled:opacity-60"
                 >
-                  Send Message <Send size={14} />
+                  {busy ? t("contact.sending") : t("contact.send")} <Send size={14} />
                 </button>
               </form>
             </div>
