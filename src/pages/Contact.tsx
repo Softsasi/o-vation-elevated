@@ -1,23 +1,35 @@
 import { useState } from "react";
 import { Send, MapPin, Mail, Phone } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import ScrollReveal from "@/components/ScrollReveal";
 import SEO from "@/components/SEO";
 import Footer from "@/components/Footer";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const Contact = () => {
+  const { t, i18n } = useTranslation();
   const { toast } = useToast();
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+  const [busy, setBusy] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Message Received",
-      description: "Thank you for reaching out. We'll be in touch within 24 hours.",
-    });
-    setForm({ name: "", email: "", phone: "", message: "" });
+    setBusy(true);
+    try {
+      const { error } = await supabase.functions.invoke("submit-contact", {
+        body: { ...form, locale: i18n.resolvedLanguage || "en" },
+      });
+      if (error) throw error;
+      toast({ title: t("contact.success"), description: t("contact.successDesc") });
+      setForm({ name: "", email: "", phone: "", message: "" });
+    } catch (err: any) {
+      toast({ title: t("contact.error"), description: t("contact.errorDesc"), variant: "destructive" });
+    } finally {
+      setBusy(false);
+    }
   };
 
   return (
@@ -97,9 +109,10 @@ const Contact = () => {
                 </div>
                 <button
                   type="submit"
-                  className="inline-flex items-center gap-3 bg-accent text-accent-foreground px-8 py-4 text-label hover:bg-accent/90 transition-colors w-full justify-center"
+                  disabled={busy}
+                  className="inline-flex items-center gap-3 bg-accent text-accent-foreground px-8 py-4 text-label hover:bg-accent/90 transition-colors w-full justify-center disabled:opacity-60"
                 >
-                  Send Message <Send size={14} />
+                  {busy ? t("contact.sending") : t("contact.send")} <Send size={14} />
                 </button>
               </form>
             </div>

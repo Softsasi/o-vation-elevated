@@ -1,78 +1,83 @@
 
+# Complete O-Vation — Backend, Admin CMS, Trilingual & Forms
 
-# O-Vation — Premium Concierge Website
+Building out the remaining brief items: easy-to-manage backend, working contact form, newsletter capture, and full English / French / Bangla support.
 
-## Creative Concept: "The Unveiling"
-An editorial, cinema-inspired experience where content reveals itself as users scroll — like stepping into a private world. Dark-to-light palette transitions, oversized typography, and generous whitespace create an atmosphere of exclusivity and sophistication.
+## 1. Enable Lovable Cloud
+Provision database, auth, storage, edge functions. All content currently hard-coded will move to managed tables so Audrey can edit without touching code.
 
-## What Makes This Unconventional
-- **No traditional nav bar** — a minimal floating menu icon that opens a full-screen overlay navigation with large editorial typography
-- **Horizontal scroll sections** — experiences/portfolio displayed as a horizontal gallery within the vertical scroll (like flipping through a coffee table book)
-- **Cursor-aware interactions** — images subtly shift on hover, text fades in on scroll, sections reveal themselves cinematically
-- **Split-screen storytelling** — content blocks alternate between imagery and text in asymmetric layouts
-- **Dark hero → warm body → dark footer** — the site "opens up" like walking into a lit room
+## 2. Database schema (with RLS)
+- `services` — title, slug, description, deliverables (jsonb), order_index, image_url, translations (jsonb: en/fr/bn)
+- `experiences` — title, category, description, image_url, featured, order_index, translations
+- `team_members` — name, role, bio, photo_url, order_index, translations
+- `testimonials` — quote, author, role, order_index, translations
+- `contact_requests` — name, email, phone, message, service_interest, created_at, status
+- `newsletter_subscribers` — email, locale, created_at, confirmed
+- `user_roles` (separate table) with `app_role` enum (`admin`, `user`) + `has_role()` SECURITY DEFINER function
+- `profiles` — id (FK auth.users), full_name, avatar_url
 
-## Color Palette
-- Primary: Rich black (#1A1A1A)
-- Warm cream: (#F5F0EB)
-- Muted gold accent: (#C5A572)
-- Off-white text: (#FAFAF8)
-- Warm gray: (#8A8578)
+RLS:
+- Public SELECT on services / experiences / team_members / testimonials
+- Admin-only INSERT/UPDATE/DELETE on content tables (via `has_role(auth.uid(),'admin')`)
+- Public INSERT on contact_requests + newsletter_subscribers; admin-only SELECT
+- Storage bucket `media` — public read, admin write
 
-## Typography
-- Headlines: Playfair Display (serif, editorial)
-- Body: Inter (clean, modern sans-serif)
-- Accent/labels: Uppercase Inter with wide letter-spacing
+## 3. Authentication
+- Email/password + Google sign-in (Lovable Cloud managed)
+- Auto-create profile via trigger on signup
+- First user is seeded as admin manually; subsequent admin promotion done from admin panel
+- `/auth` page (sign in / sign up) — branded, not in main nav
+- `/reset-password` page for recovery flow
 
-## Pages & Structure
+## 4. Admin Panel (`/admin/*`)
+Protected by `RequireAdmin` wrapper (checks `has_role`). Sidebar layout (shadcn sidebar, collapsible) with sections:
+- **Dashboard** — counts, recent contact requests, recent subscribers
+- **Services** — table + edit drawer (title/description/image/order, per-locale fields)
+- **Experiences** — table + edit drawer, image upload, category, featured toggle
+- **Team** — table + edit drawer, photo upload
+- **Testimonials** — table + edit drawer
+- **Contact Requests** — read-only inbox, mark status (new / replied / archived), CSV export
+- **Newsletter** — list subscribers, CSV export
+- **Media Library** — uploads to `media` bucket
+- **Settings** — manage admin users (promote/demote via `user_roles`)
 
-### 1. Home
-- **Hero**: Full-screen dark background, large "O-Vation" wordmark with subtle gold shimmer animation, tagline "Where Vision Meets Experience", minimal scroll indicator
-- **Introduction strip**: One powerful sentence about O-Vation's positioning with a "Discover" CTA
-- **Services preview**: 4 elegant cards (Luxury Concierge, Business Development, Curated Experiences, High-End Events) with hover reveals
-- **Horizontal portfolio scroller**: Featured experiences in a draggable horizontal gallery
-- **Testimonial**: Single large editorial quote with attribution
-- **CTA section**: "Let's Create Something Extraordinary" with contact prompt
+All forms use react-hook-form + zod. Tables use TanStack Query for fetch + invalidation.
 
-### 2. About
-- **Audrey's story**: Large editorial portrait alongside her bio in split-screen layout
-- **O-Vation philosophy**: Mission and values in elegant typographic layout
-- **Key differentiators**: Visual icons/badges for what sets O-Vation apart
+## 5. Contact form backend
+- Edge function `submit-contact` — zod-validates payload, inserts into `contact_requests`, sends Audrey a notification email via Lovable transactional email (after email domain setup) and an acknowledgment to the visitor
+- Hook up `Contact.tsx` form to invoke it; keep toast feedback
 
-### 3. Services
-- **4 service pillars**: Each with its own visual section — imagery, description, and key deliverables
-- **Approach section**: How O-Vation works (discovery → design → delivery)
+## 6. Newsletter
+- Footer email input (already styled) → edge function `subscribe-newsletter` inserts into `newsletter_subscribers` with current locale
+- Toast confirmation; duplicate-email handled gracefully
 
-### 4. Experiences / Portfolio
-- **Filterable gallery**: Grid of past experiences/events with category filters
-- **Each experience card**: Image, title, category tag, expandable details
+## 7. Trilingual (EN / FR / BN)
+- Install `i18next` + `react-i18next` + `i18next-browser-languagedetector`
+- Locale files: `src/locales/en.json`, `src/locales/fr.json`, `src/locales/bn.json` covering all static UI strings (nav, hero, services, about, testimonials, contact, footer, admin labels)
+- Language switcher inside the full-screen overlay menu (3 minimal labels: EN · FR · বাংলা)
+- Persist choice in localStorage; default to browser locale
+- `<html lang>` updated on change; SEO meta strings also translated per page
+- Dynamic content (services, experiences, team, testimonials) reads `translations[locale]` with fallback to base English fields
+- Bangla typography: add `Noto Serif Bengali` (display) + `Noto Sans Bengali` (body) Google Fonts, applied via a CSS variable swap when `lang="bn"` so Playfair/Inter are replaced gracefully
 
-### 5. Team
-- **Minimal grid**: Photo + name + role, expandable bios
-- **Scalable**: Easy to add new members
+## 8. Frontend page updates
+- All current pages (`Index`, `About`, `Services`, `Experiences`, `Team`, `Testimonials`, `Contact`) refactored to read dynamic content from Cloud via TanStack Query, falling back to bundled seed copy while data loads
+- Seed migration populates current placeholder copy in EN (FR + BN left empty for Audrey to fill — UI falls back to EN)
 
-### 6. Testimonials
-- **Editorial carousel**: Large quotes, client names, subtle background imagery
+## 9. Routes added
+- `/auth`, `/reset-password`
+- `/admin` (dashboard), `/admin/services`, `/admin/experiences`, `/admin/team`, `/admin/testimonials`, `/admin/inbox`, `/admin/newsletter`, `/admin/media`, `/admin/settings`
+- `404` already exists
 
-### 7. Contact
-- **Split layout**: Contact form on one side, direct info (email, phone, social) on the other
-- **Map or location hint** for physical presence
-- **"Request a Consultation"** as primary CTA
+## 10. Out of scope (will note to user)
+- Custom email domain setup dialog — needs Audrey's domain; surfaced as a follow-up suggestion
+- Real photography / team bios / client list — content seats waiting in CMS
+- DNS/GoDaddy migration — separate operational task, not code
 
-## Navigation
-- **Floating hamburger icon** (top-right) opens a full-screen overlay menu
-- **Smooth scroll** between sections on the homepage
-- **Subtle page transition animations**
-
-## Technical Details
-- Fully responsive (mobile-first approach)
-- Smooth scroll animations using Framer Motion
-- All content is placeholder text crafted for the luxury concierge industry
-- Image placeholders ready to be swapped with real photography
-- English primary (bilingual can be added as Phase 2)
-
-## Mobile Experience
-- Full-screen sections with swipe-friendly horizontal gallery
-- Bottom-anchored CTA button
-- Simplified navigation with slide-in menu
+## Technical notes
+- Roles are stored in a separate `user_roles` table (never on profiles) with a `has_role()` SECURITY DEFINER function used by all RLS policies — avoids recursion and privilege-escalation risk
+- All edge functions: CORS headers, zod validation, no raw SQL
+- Admin panel uses shadcn `Sidebar` with `collapsible="icon"`, NavLink active states — separate layout from the public marketing site so it doesn't break the floating-hamburger rule on the public pages
+- i18n keys grouped by page; helper `useLocalizedField(record, 'title')` for dynamic content
+- Bangla font swap implemented via `[lang="bn"] :root { --font-display: 'Noto Serif Bengali'; --font-body: 'Noto Sans Bengali'; }`
 
